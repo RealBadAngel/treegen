@@ -168,3 +168,16 @@ random_level=0,
 trunk_type="crossed",
 thin_branches=true
 }
+
+rubber_tree={
+axiom="FFFFA",
+rules_a="[&FFBFA]////[&BFFFA]////[&FBFFA]",
+rules_b="[&FFA]////[&FFA]////[&FFA]",
+trunk="treegen:rubber_trunk",
+leaves="treegen:rubber_leaves",
+angle=35,
+iterations=3,
+random_level=1,
+trunk_type="double",
+thin_branches=true
+}

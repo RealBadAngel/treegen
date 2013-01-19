@@ -1,24 +1,52 @@
+leaves = {
+	{"beech",				"Beech Leaves"},
+	{"apple_tree", 			"Apple Tree Leaves"},
+	{"oak",					"Oak Leaves"},
+	{"sequoia",				"Sequoia Needles"},
+	{"birch",				"Birch Leaves"},
+	{"palm",				"Palm Leaves"},
+	{"spruce",				"Spruce Needles"},
+	{"pine",				"Pine Needles"},
+	{"willow",				"Willow Leaves"},
+	{"rubber_tree",			"Rubber Tree Leaves"},
+	{"jungletree_red",		"Jungle Tree Red Leaves"},
+	{"jungletree_green",	"Jungle Tree Green Leaves"},
+	{"jungletree_yellow",	"Jungle Tree Yellow Leaves"}
+	}
+
+for i in ipairs(leaves) do
+	local name = leaves[i]
+	minetest.register_node("treegen:"..leaves[i][1].."_leaves", {
+		description = leaves[i][2],
+		drawtype = "allfaces_optional",
+		visual_scale = 1.3,
+		tiles = { "treegen_"..leaves[i][1].."_leaves.png" },
+		paramtype = "light",
+		groups = {tree=1, snappy=3, flammable=2},
+		sounds = default.node_sound_leaves_defaults(),
+	})
+	end
+	
 trees = {
-	{beech_model,		"beech",		"Beech",		nil,			nil,			nil	},
-	{apple_tree_model,	"apple_tree",	"Apple Tree",	nil,			nil,			nil	},
-	{oak_model,			"oak",			"Oak",			"acorn",		"Acorn",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
-	{sequoia_model,		"sequoia",		"Sequoia",		nil,			nil,			nil	},
-	{birch_model1,		"birch",		"Birch",		nil,			nil,			nil	},
-	{birch_model2,		"birch",		"Birch",		nil,			nil,			nil	},
-	{palm_model,		"palm",			"Palm",			"coconut",		"Coconut",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
-	{spruce_model1,		"spruce",		"Spruce",		"spruce_cone",	"Spruce Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
-	{spruce_model2,		"spruce",		"Spruce",		"spruce_cone",	"Spruce Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
-	{pine_model,		"pine",			"Pine",			"pine_cone",	"Pine Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
-	{willow_model,		"willow",		"Willow",		nil,			nil,			nil	}
+	{"beech",		"Beech",		nil,			nil,			nil	},
+	{"apple_tree",	"Apple Tree",	nil,			nil,			nil	},
+	{"oak",			"Oak",			"acorn",		"Acorn",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
+	{"sequoia",		"Sequoia",		nil,			nil,			nil	},
+	{"birch",		"Birch",		nil,			nil,			nil	},
+	{"palm",		"Palm",			"coconut",		"Coconut",		{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
+	{"spruce",		"Spruce",		"spruce_cone",	"Spruce Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
+	{"pine",		"Pine",			"pine_cone",	"Pine Cone",	{-0.2, -0.5, -0.2, 0.2, 0, 0.2}	},
+	{"willow",		"Willow",		nil,			nil,			nil	},
+	{"rubber_tree",	"Rubber Tree",	nil,			nil,			nil	},
+	{"jungletree",	"Jungle Tree",	nil,			nil,			nil	}
 }
 
 for i in ipairs(trees) do
-	local treedef = trees[i][1]
-	local treename = trees[i][2]
-	local treedesc = trees[i][3]
-	local fruit = trees[i][4]
-	local fruitdesc = trees[i][5]
-	local selbox = trees[i][6]
+	local treename = trees[i][1]
+	local treedesc = trees[i][2]
+	local fruit = trees[i][3]
+	local fruitdesc = trees[i][4]
+	local selbox = trees[i][5]
 
 	minetest.register_node("treegen:"..treename.."_trunk", {
 		description = treedesc.." Trunk",
@@ -30,16 +58,6 @@ for i in ipairs(trees) do
 		is_ground_content = true,
 		groups = {tree=1,snappy=1,choppy=2,oddly_breakable_by_hand=1,flammable=2},
 		sounds = default.node_sound_wood_defaults(),
-	})
-
-	minetest.register_node("treegen:"..treename.."_leaves", {
-		description = treedesc.." Leaves",
-		drawtype = "allfaces_optional",
-		visual_scale = 1.3,
-		tiles = { "treegen_"..treename.."_leaves.png" },
-		paramtype = "light",
-		groups = {tree=1, snappy=3, flammable=2},
-		sounds = default.node_sound_leaves_defaults(),
 	})
 
 	minetest.register_node("treegen:"..treename.."_planks", {
@@ -86,17 +104,5 @@ for i in ipairs(trees) do
 		})
 	end
 
-minetest.register_craftitem("treegen:tree_spawner_"..i, {
-	description = treedesc.." spawner",
-	inventory_image = "default_stick.png",
-    on_use = function(itemstack, user, pointed_thing)
-		if pointed_thing.type == "node" then
-			local pos = pointed_thing.above
-			minetest.env:spawn_tree(pos,treedef)
-		end
-	end,
-})
-
 end
-
 
