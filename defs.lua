@@ -20,8 +20,8 @@ for i in ipairs(trees) do
 	local fruitdesc = trees[i][5]
 	local selbox = trees[i][6]
 
-	minetest.register_node("treegen:"..treename.."_tree", {
-		description = treedesc.." Tree",
+	minetest.register_node("treegen:"..treename.."_trunk", {
+		description = treedesc.." Trunk",
 		tiles = {
 			"treegen_"..treename.."_top.png",
 			"treegen_"..treename.."_top.png",
